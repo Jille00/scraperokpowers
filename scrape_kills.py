@@ -38,11 +38,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name('jsonFileFromGoog
 gc = gspread.authorize(credentials)
 
 #Add a sheet in google and get the url key form it, make sure you share it with your service account first!
-#my sheet url is https://docs.google.com/spreadsheets/d/1Ih04MGx2dhJV2RHxVFU2HNa5D1UkGZJjLj_S6DG4c9k/edit#gid=0
-# https://docs.google.com/spreadsheets/d/1DNcDymRBnRSU-Qncg8uE9zdEM3-sorsJTSRrzaKseX8/edit#gid=0
 spreadsheet_key = '1DNcDymRBnRSU-Qncg8uE9zdEM3-sorsJTSRrzaKseX8'
 #Change to the worksheet name
-#Todo: Add new worksheets for each day??
 wks_name = 'Kills'
-#this will overwrite the existing sheet
 d2g.upload(Totals, spreadsheet_key, wks_name, credentials=credentials, row_names=True)
