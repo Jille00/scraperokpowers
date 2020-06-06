@@ -47,7 +47,7 @@ credentials = ServiceAccountCredentials.from_json_keyfile_name('jsonFileFromGoog
 gc = gspread.authorize(credentials)
 
 #Add a sheet in google and get the url key form it, make sure you share it with your service account first!
-spreadsheet_key = '1DNcDymRBnRSU-Qncg8uE9zdEM3-sorsJTSRrzaKseX8'
+spreadsheet_key = 'yourkey'
 #Change to the worksheet name
 wks_name = 'Kd1-600'
 d2g.upload(SumTable, spreadsheet_key, wks_name, credentials=credentials, row_names=True)
