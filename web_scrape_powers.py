@@ -7,14 +7,30 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import numpy as np
 
+kingdom = str(input("What kingdom? "))
+
 url = 'https://rokinf.com/rank/player_power'
 
 data = pd.DataFrame(columns=[0, 1, 2, 3, 4, 5])
 
 driver = webdriver.Chrome()
-
 driver.get(url)
 driver.implicitly_wait(150)
+
+for i in range(1,9):
+	nxt = driver.find_element_by_xpath("/html/body/div/section/section/main/div/div[2]/div/div/div/div[1]/form/div/div[2]/div/div/div/span/div/div/div/ul/li[1]/span")
+	nxt.click()
+	time.sleep(0.5)
+driver.find_element_by_class_name('ant-select-search__field').send_keys(kingdom)
+
+nxt = driver.find_element_by_xpath("/html/body/div[2]/div/div/div/ul/li")
+nxt.click()
+
+nxt = driver.find_element_by_xpath("/html/body/div[1]/section/section/main/div/div[2]/div/div/div/div[1]/form/div/div[3]/span/button")
+nxt.click()
+
+time.sleep(1.5)
+
 for i in range(20):
 	_powers = driver.find_element_by_css_selector('table').text
 	while len(list(_powers)) == 0:
