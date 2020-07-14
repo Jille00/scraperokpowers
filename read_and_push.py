@@ -12,6 +12,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from collections import Counter
 import numpy as np
 import gspread_dataframe as gd
+import random
 
 # use creds to create a client to interact with the Google Drive API
 scope = ['https://spreadsheets.google.com/feeds',
@@ -34,9 +35,12 @@ for i in list_of_hashes:
 total_kd_list = np.arange(1000, 1700)
 
 cou = set(kds)
-total_set = np.arange(1,10)
+total_set = np.arange(1,700)
 missing = set(total_set) - cou
-missing = list(missing)[:1]
+missing = list(missing)
+
+total_kds_pulling = 1
+missing = random.sample(missing, total_kds_pulling)
 
 kingdoms = []
 for i in missing:
@@ -84,7 +88,7 @@ for kingdom in kingdoms:
 
     time.sleep(2.5)
  
-    for i in range(1):
+    for i in range(20):
         _powers = driver.find_element_by_css_selector('table').text
         while len(list(_powers)) == 0:
             _powers = driver.find_element_by_css_selector('table').text
@@ -135,3 +139,5 @@ updated = pd.concat([existing, data], axis=0, join='outer', ignore_index=True, k
 
 # updated.to_excel(filename)
 gd.set_with_dataframe(sheet, updated)
+
+driver.quit()
